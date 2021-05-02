@@ -43,7 +43,7 @@ export default class Searchbar extends React.Component {
 			<ul className="w-full bg-gray-200 p-3 text-black">
 				{suggestions.map((hotel) => (
 					<li key={hotel} onClick={(e) => this.suggestionsSelected(hotel)}>
-						{<Link href={"/"}>{hotel}</Link>}
+						{<Link href={"/hotels"}>{hotel}</Link>}
 					</li>
 				))}
 			</ul>

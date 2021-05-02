@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup.object().shape({
-	name: yup.string().required("Please enter your name"),
+	name: yup.string().required("Please enter your name").min(5, "Please enter your full name"),
 	email: yup.string().required("Please enter your email address").email("Please enter a valid email address"),
 	from: yup.date().required("Please choose the date you wish to start your visit"),
 	to: yup
@@ -44,24 +44,54 @@ function EnquiryForm({ hotelName }) {
 
 	return (
 		<>
-			{submitSuccess && <span>{submitSuccess}</span>}
+			{submitSuccess && <span className="text-center py-20 text-2xl">{submitSuccess}</span>}
 			{submitSuccess ? (
 				""
 			) : (
-				<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-center items-center">
+				<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-center items-center gap-3 font-paragraph">
 					{serverError && <span>{serverError}</span>}
 					<input className="hidden" name="hotel" defaultValue={hotelName} ref={register} />
-					<input type="text" name="name" placeholder="Full name" ref={register} />
+					<input
+						className="w-64 focus:border-black focus:ring-black md:max-w-lg md:w-full"
+						type="text"
+						name="name"
+						placeholder="Full name"
+						ref={register}
+					/>
 					{errors.name && <span>{errors.name.message}</span>}
-					<input type="email" name="email" placeholder="Email" ref={register} />
+					<input
+						className="w-64 focus:border-black focus:ring-black md:max-w-lg md:w-full"
+						type="email"
+						name="email"
+						placeholder="Email"
+						ref={register}
+					/>
 					{errors.email && <span>{errors.email.message}</span>}
-					<div className="flex flex-col md:flex-row">
-						<input type="date" name="from" ref={register} />
-						{errors.from && <div>{errors.from.message}</div>}
-						<input type="date" name="to" ref={register} />
-						{errors.to && <div>{errors.to.message}</div>}
+					<div className="flex flex-col md:flex-row justify-center items-start md:gap-4">
+						<div className="flex flex-col justify-center items-start">
+							<label className="font-heading">From</label>
+							<input
+								className="w-64 mb-2 focus:border-black focus:ring-black md:w-56"
+								type="date"
+								name="from"
+								ref={register}
+							/>
+							{errors.from && <span className="w-64 md:w-56">{errors.from.message}</span>}
+						</div>
+						<div className="flex flex-col justify-center items-start">
+							<label className="font-heading">To</label>
+							<input
+								className="w-64  mb-2 focus:border-black focus:ring-black md:w-56"
+								type="date"
+								name="to"
+								ref={register}
+							/>
+							{errors.to && <span className="w-64 md:w-56">{errors.to.message}</span>}
+						</div>
 					</div>
-					<button>{submitting ? "Booking..." : "Submit"}</button>
+					<button className="w-64 h-12 text-white hover:text-green-700 text-xl bg-green-700 hover:bg-transparent border-green-700 border-2 tracking-widest transition ease-out duration-300">
+						{submitting ? "Booking..." : "SUBMIT"}
+					</button>
 				</form>
 			)}
 		</>

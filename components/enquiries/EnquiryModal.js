@@ -39,12 +39,12 @@ function EnquiryModal({ showModal, setShowModal, hotelName }) {
 					animate="visible"
 					exit="hidden">
 					<motion.div
-						className="bg-white text-black flex flex-col justify-center items-center my-5 py-5 w-11/12 sm:w-9/12 lg:w-1/2 relative"
+						className="bg-white text-black flex flex-col justify-center items-center my-5 py-5 w-72 md:w-9/12 lg:w-1/2 relative"
 						variants={modal}>
-						<h1>Booking</h1>
+						<h1 className="text-5xl font-heading my-5">Booking</h1>
 						<EnquiryForm hotelName={hotelName} />
 						<FontAwesomeIcon
-							className="w-6 h-6 absolute m-2 right-0 top-0"
+							className="w-6 h-6 md:w-8 md:h-8 absolute m-2 right-0 top-0 cursor-pointer"
 							icon={faTimes}
 							onClick={() => setShowModal((prev) => !prev)}
 						/>

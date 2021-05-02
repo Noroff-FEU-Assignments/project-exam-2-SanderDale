@@ -20,7 +20,7 @@ export default function Home({ hotels }) {
 					</h1>
 				</div>
 				<div className="h-full px-5 flex items-start justify-center w-full lg:w-1/3">
-					<Searchbar hotels={hotels} />
+					<Searchbar hotelNames={hotelNames} />
 				</div>
 			</div>
 		</div>
