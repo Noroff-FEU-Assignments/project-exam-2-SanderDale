@@ -1,8 +1,17 @@
 import Image from "next/image";
+import { useState } from "react";
+import EnquiryModal from "../enquiries/EnquiryModal";
 
 function HotelDetails({ hotelName, hotelImage, hotelDescription, hotelRating, hotelPrice }) {
+	const [showModal, setShowModal] = useState(false);
+
+	const openModal = () => {
+		setShowModal((prev) => !prev);
+	};
+
 	return (
 		<>
+			<EnquiryModal showModal={showModal} setShowModal={setShowModal} hotelName={hotelName} />
 			<div className="lg:hidden">
 				<Image src={hotelImage} width={320} height={110} layout="responsive" objectFit="cover" objectPosition="center" />
 			</div>
@@ -23,7 +32,9 @@ function HotelDetails({ hotelName, hotelImage, hotelDescription, hotelRating, ho
 					</p>
 				</div>
 				<div className="w-full text-white sm:flex sm:justify-center sm:items-center lg:col-start-1 lg:col-end-3 lg:justify-start">
-					<button className="uppercase h-9 sm:h-9 w-full sm:w-44 flex items-center justify-center rounded bg-blue-500">
+					<button
+						className="uppercase h-9 sm:h-9 w-full sm:w-44 flex items-center justify-center rounded bg-blue-500"
+						onClick={openModal}>
 						Book Now
 					</button>
 				</div>

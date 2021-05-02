@@ -1,6 +1,5 @@
 import React from "react";
-import { useState } from "react";
-import styled from "styled-components";
+import Link from "next/link";
 
 export default class Searchbar extends React.Component {
 	constructor(props) {
@@ -11,18 +10,19 @@ export default class Searchbar extends React.Component {
 		};
 	}
 
-	onTextChange = (event) => {
-		const { hotels } = this.props;
+	onTextChange = (e) => {
+		const { hotelNames } = this.props;
+		console.log(hotelNames);
 		let suggestions = [];
-		const value = event.target.value;
+		const value = e.target.value;
 		if (value.length > 0) {
 			const regex = new RegExp(`^${value}`, `i`);
-			suggestions = hotels.sort().filter((v) => regex.test(v));
+			suggestions = hotelNames.sort().filter((v) => regex.test(v));
 		}
 
 		this.setState(() => ({
 			suggestions,
-			test: value,
+			text: value,
 		}));
 	};
 
@@ -40,10 +40,10 @@ export default class Searchbar extends React.Component {
 			return null;
 		}
 		return (
-			<ul>
+			<ul className="w-full bg-gray-200 p-3 text-black">
 				{suggestions.map((hotel) => (
-					<li key={hotel} onClick={(event) => this.suggestionsSelected(hotel)}>
-						{hotel}
+					<li key={hotel} onClick={(e) => this.suggestionsSelected(hotel)}>
+						{<Link href={"/"}>{hotel}</Link>}
 					</li>
 				))}
 			</ul>
@@ -53,41 +53,16 @@ export default class Searchbar extends React.Component {
 	render() {
 		const { text } = this.state;
 		return (
-			<div>
-				<input onChange={this.onTextChange} placeholder="Search..." value={text} type="search" />
+			<div className="w-full md:w-2/4 xl:w-full mb-11">
+				<input
+					className="bg-gray-100 text-black border-black border-2 placeholder-black pl-5 font-heading h-12 lg:h-14 focus:border-black focus:ring-black w-full"
+					onChange={this.onTextChange}
+					value={text}
+					type="text"
+					placeholder="Search..."
+				/>
 				{this.renderSuggestions()}
 			</div>
 		);
 	}
 }
-
-/*const StyledSearchbar = styled.input`
-	background-color: ${(props) => props.backgroundColor};
-	border-color: ${(props) => props.borderColor};
-	color: ${(props) => props.textColor};
-	&:focus {
-		outline: ${(props) => props.outlineColor};
-		border-color: ${(props) => props.borderColor};
-	}
-	&::placeholder {
-		color: ${(props) => props.textColor};
-	}
-`;
-
-function Searchbar(props) {
-	return (
-		<StyledSearchbar
-			className="bg-black bg-opacity-50 text-white border-white border-2 rounded-full placeholder-white pl-5 font-heading h-12 lg:h-14 focus:border-white focus:ring-white mb-11 w-full"
-			type="search"
-			id="search"
-			name="search"
-			placeholder="Search..."
-			backgroundColor={props.backgroundColor}
-			borderColor={props.borderColor}
-			textColor={props.textColor}
-			outlineColor={props.outlineColor}
-		/>
-	);
-}
-
-export default Searchbar;*/

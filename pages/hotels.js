@@ -1,11 +1,12 @@
 import Head from "next/head";
-import Link from "next/link";
 import axios from "axios";
 import { BASE_URL } from "./../constants/api";
 import Searchbar from "../components/search/Searchbar";
 import HotelsList from "../components/hotels/HotelsList";
 
-export default function Hotels(props) {
+export default function Hotels({ hotels }) {
+	const hotelNames = hotels.map((hotel) => hotel.name);
+
 	return (
 		<div>
 			<Head>
@@ -16,18 +17,12 @@ export default function Hotels(props) {
 			<h1 className="text-5xl sm:text-7xl text-center my-8 sm:my-10 lg:my-16 xl:my-20 font-semibold">Hotels</h1>
 			<main className="flex flex-col xl:grid xl:grid-cols-4 items-center xl:items-start justify-center w-full">
 				<div className="w-full px-5 sm:px-20 lg:px-0 lg:pl-10 pt-5 flex justify-center items-center">
-					<div className="w-full md:w-2/4 xl:w-full">
-						<Searchbar
-							hotels={props.hotels}
-							backgroundColor="white"
-							borderColor="black"
-							textColor="black"
-							outlineColor="black"
-						/>
+					<div className="w-full flex justify-center items-center">
+						<Searchbar hotelNames={hotelNames} />
 					</div>
 				</div>
 				<div className="flex flex-col items-center xl:col-span-3 w-11/12 mb-10">
-					{props.hotels.map((hotel) => {
+					{hotels.map((hotel) => {
 						return (
 							<HotelsList
 								key={hotel.id}

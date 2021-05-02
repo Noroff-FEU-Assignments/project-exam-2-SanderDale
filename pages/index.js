@@ -1,7 +1,11 @@
 import Head from "next/head";
+import axios from "axios";
+import { BASE_URL } from "./../constants/api";
 import Searchbar from "./../components/search/Searchbar";
 
-export default function Home() {
+export default function Home({ hotels }) {
+	const hotelNames = hotels.map((hotel) => hotel.name);
+
 	return (
 		<div>
 			<Head>
@@ -15,10 +19,27 @@ export default function Home() {
 						Find the best hotel for your next stay in Bergen
 					</h1>
 				</div>
-				<div className="h-full flex items-start justify-center w-3/4 sm:w-1/2 lg:w-1/3">
-					<Searchbar />
+				<div className="h-full px-5 flex items-start justify-center w-full lg:w-1/3">
+					<Searchbar hotels={hotels} />
 				</div>
 			</div>
 		</div>
 	);
+}
+
+export async function getStaticProps() {
+	let hotels = [];
+
+	try {
+		const response = await axios.get(BASE_URL);
+		hotels = response.data;
+	} catch (error) {
+		console.log(error);
+	}
+
+	return {
+		props: {
+			hotels: hotels,
+		},
+	};
 }

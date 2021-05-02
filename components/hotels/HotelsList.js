@@ -27,9 +27,9 @@ function HotelsList({ hotelName, hotelImage, hotelDescription, hotelRating, hote
 					NOK {hotelPrice}
 				</p>
 				<div className="flex items-center sm:items-start lg:items-center justify-center sm:justify-end text-white text-sm sm:text-lg h-1/3">
-					<div className="h-7 sm:h-9 w-full sm:w-44 flex items-center justify-center rounded bg-blue-500">
-						<Link href={"/detail/" + hotelId}>Details</Link>
-					</div>
+					<Link href={"/detail/" + hotelId}>
+						<a className="h-7 sm:h-9 w-full sm:w-44 flex items-center justify-center rounded bg-blue-500">Details</a>
+					</Link>
 				</div>
 			</div>
 		</div>

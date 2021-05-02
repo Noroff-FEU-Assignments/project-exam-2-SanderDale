@@ -60,12 +60,7 @@ function Navigation() {
 					</svg>
 				</button>
 			</div>
-			<div
-				className={`${
-					open
-						? "transition duration-500 ease-in-out transform -translate-x-0 absolute inset-0 z-30 overflow-hidden h-screen"
-						: "transition duration-500 ease-in-out transform translate-x-full overflow-hidden"
-				}`}>
+			<div className={`${open ? "" : "hidden"}`}>
 				<button
 					className="mobile-menu-close xl:hidden flex absolute top-0 right-0 justify-center items-center z-20 mr-7 mt-7"
 					onClick={handleClick}>

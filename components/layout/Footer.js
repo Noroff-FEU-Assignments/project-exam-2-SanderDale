@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitterSquare } from "@fortawesome/free-brands-svg-icons";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 function Footer() {
 	const router = useRouter();
@@ -64,7 +65,12 @@ function Footer() {
 							? "text-white border-b-2 border-white"
 							: "text-gray-300 transition ease-out duration-500 border-white border-b-2 border-opacity-0 hover:border-opacity-100 hover:text-white"
 					}>
-					<Link href="/adminLogin">Admin</Link>
+					<Link href="/adminLogin">
+						<a className="flex justify-center items-center">
+							<FontAwesomeIcon className="w-6 h-6 pr-2" icon={faUser} />
+							Admin
+						</a>
+					</Link>
 				</div>
 			</div>
 		</footer>
