@@ -9,7 +9,7 @@ export default function Home({ hotels }) {
 	return (
 		<div>
 			<Head>
-				<title>Create Next App</title>
+				<title>Holidaze | Home</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 

@@ -55,7 +55,7 @@ function EnquiryForm({ hotelName }) {
 						className="w-64 focus:border-black focus:ring-black md:max-w-lg md:w-full"
 						type="text"
 						name="name"
-						placeholder="Full name"
+						placeholder="Full name *"
 						ref={register}
 					/>
 					{errors.name && <span>{errors.name.message}</span>}
@@ -63,13 +63,13 @@ function EnquiryForm({ hotelName }) {
 						className="w-64 focus:border-black focus:ring-black md:max-w-lg md:w-full"
 						type="email"
 						name="email"
-						placeholder="Email"
+						placeholder="Email *"
 						ref={register}
 					/>
 					{errors.email && <span>{errors.email.message}</span>}
 					<div className="flex flex-col md:flex-row justify-center items-start md:gap-4">
 						<div className="flex flex-col justify-center items-start">
-							<label className="font-heading">From</label>
+							<label className="font-heading">From *</label>
 							<input
 								className="w-64 mb-2 focus:border-black focus:ring-black md:w-56"
 								type="date"
@@ -79,7 +79,7 @@ function EnquiryForm({ hotelName }) {
 							{errors.from && <span className="w-64 md:w-56">{errors.from.message}</span>}
 						</div>
 						<div className="flex flex-col justify-center items-start">
-							<label className="font-heading">To</label>
+							<label className="font-heading">To *</label>
 							<input
 								className="w-64  mb-2 focus:border-black focus:ring-black md:w-56"
 								type="date"
