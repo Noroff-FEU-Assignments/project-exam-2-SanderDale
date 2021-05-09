@@ -15,6 +15,8 @@ module.exports = {
 				"home-banner-big": "url('/images/bergen-brygge-homepage-big.jpg')",
 				"home-banner-medium": "url('/images/bergen-brygge-homepage-medium.jpg')",
 				"home-banner-small": "url('/images/bergen-brygge-homepage-small.jpg')",
+				"login-banner-small": "url('/images/login-banner-small.jpg')",
+				"login-banner-large": "url('/images/login-banner-large.jpg')",
 			}),
 		},
 	},
