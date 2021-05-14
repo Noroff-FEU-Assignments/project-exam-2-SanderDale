@@ -9,11 +9,20 @@ function HotelDetails({ hotelName, hotelImage, hotelDescription, hotelRating, ho
 		setShowModal((prev) => !prev);
 	};
 
+	const baseUrl = "http://localhost:1337";
+
 	return (
 		<>
 			<EnquiryModal showModal={showModal} setShowModal={setShowModal} hotelName={hotelName} />
 			<div className="lg:hidden">
-				<Image src={hotelImage} width={320} height={110} layout="responsive" objectFit="cover" objectPosition="center" />
+				<Image
+					src={baseUrl + hotelImage}
+					width={320}
+					height={110}
+					layout="responsive"
+					objectFit="cover"
+					objectPosition="center"
+				/>
 			</div>
 			<div className="flex justify-center items-center flex-col lg:grid lg:gap-0 grid-rows-5 grid-cols-10 px-5 mx-auto mb-10 lg:mt-10 gap-5 sm:gap-10 w-10/12 sm:w-8/12 lg:w-9/12 xl:w-7/12 lg:h-96 lg:auto-cols-auto">
 				<div className="flex justify-center items-center lg:items-start flex-col lg:col-span-2 lg:col-start-1 lg:col-end-6 lg:row-span-3">
@@ -39,7 +48,14 @@ function HotelDetails({ hotelName, hotelImage, hotelDescription, hotelRating, ho
 					</button>
 				</div>
 				<div className="hidden lg:block mx-auto w-80 h-80 lg:row-start-1 lg:row-span-5  col-start-7 col-end-11">
-					<Image src={hotelImage} width={350} height={350} layout="responsive" objectFit="cover" objectPosition="center" />
+					<Image
+						src={baseUrl + hotelImage}
+						width={350}
+						height={350}
+						layout="responsive"
+						objectFit="cover"
+						objectPosition="center"
+					/>
 				</div>
 			</div>
 		</>

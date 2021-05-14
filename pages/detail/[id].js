@@ -40,7 +40,7 @@ export default function Details({ hotel }) {
 			<Breadcrumbs hotelName={hotel.name} />
 			<HotelDetails
 				hotelName={hotel.name}
-				hotelImage={hotel.image_url}
+				hotelImage={hotel.image.url}
 				hotelDescription={hotel.description}
 				hotelRating={hotel.rating}
 				hotelPrice={hotel.price}

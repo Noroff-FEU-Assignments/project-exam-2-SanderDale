@@ -27,7 +27,7 @@ export default function Hotels({ hotels }) {
 							<HotelsList
 								key={hotel.id}
 								hotelName={hotel.name}
-								hotelImage={hotel.image_url}
+								hotelImage={hotel.image.url}
 								hotelDescription={hotel.description}
 								hotelRating={hotel.rating}
 								hotelPrice={hotel.price}
