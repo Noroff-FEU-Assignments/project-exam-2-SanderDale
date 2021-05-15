@@ -2,14 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 function HotelsList({ hotelName, hotelImage, hotelDescription, hotelRating, hotelPrice, hotelId }) {
-	const baseUrl = "http://localhost:1337";
-
 	return (
 		<div key={hotelId} className="border-b-2 m-5 w-10/12 md:w-3/4 grid grid-cols-3 sm:grid-cols-4 pb-4 font-heading">
 			<div className="row-span-2">
 				<div className="lg:hidden">
 					<Image
-						src={baseUrl + hotelImage}
+						src={hotelImage}
 						width={100}
 						height={150}
 						layout="responsive"
@@ -19,7 +17,7 @@ function HotelsList({ hotelName, hotelImage, hotelDescription, hotelRating, hote
 				</div>
 				<div className="hidden lg:block">
 					<Image
-						src={baseUrl + hotelImage}
+						src={hotelImage}
 						width={250}
 						height={250}
 						layout="responsive"

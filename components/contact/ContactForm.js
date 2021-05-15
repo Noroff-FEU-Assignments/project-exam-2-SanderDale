@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { BASE_URL } from "./../../constants/api";
 
 const schema = yup.object().shape({
 	name: yup.string().required("Please enter your name").min(5, "Please enter your full name"),
@@ -25,7 +26,7 @@ function ContactForm() {
 		console.log(data);
 
 		try {
-			const response = await axios.post("http://localhost:1337/messages/", data);
+			const response = await axios.post(BASE_URL + "/messages/", data);
 			console.log("response", response.data);
 			setSubmitSuccess("Thank you for your message!");
 		} catch (error) {

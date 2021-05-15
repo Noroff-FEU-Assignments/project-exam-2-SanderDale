@@ -7,8 +7,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../context/AuthContext";
+import useAxios from "../hooks/useAxios";
 import AdminEnquiries from "../components/admin/AdminEnquiries";
 import AdminMessages from "../components/admin/AdminMessages";
+import { BASE_URL } from "./../constants/api";
 
 export default function AdminPage({ enquiries, messages }) {
 	const router = useRouter();
@@ -23,6 +25,8 @@ export default function AdminPage({ enquiries, messages }) {
 		setAuth(null);
 		router.push("/");
 	}
+
+	console.log(messages);
 
 	return (
 		<div className="flex justify-center items-center flex-col">
@@ -64,9 +68,9 @@ export async function getStaticProps() {
 	let messages = [];
 
 	try {
-		const enquiriesResponse = await axios.get("http://localhost:1337/enquiries/");
+		const enquiriesResponse = await axios.get(BASE_URL + "/enquiries");
 		enquiries = enquiriesResponse.data;
-		const messagesResponse = await axios.get("http://localhost:1337/messages/");
+		const messagesResponse = await axios.get(BASE_URL + "/messages");
 		messages = messagesResponse.data;
 	} catch (error) {
 		console.log(error);

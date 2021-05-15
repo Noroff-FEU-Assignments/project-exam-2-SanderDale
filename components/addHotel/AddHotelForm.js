@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { BASE_URL } from "./../../constants/api";
 
 const schema = yup.object().shape({
 	name: yup.string().required("Please enter hotel name").min(5, "Please enter the full hotel name"),
@@ -37,7 +38,7 @@ function AddHotelForm() {
 		console.log(data);
 
 		try {
-			const response = await axios.post("http://localhost:1337/hotels/", data);
+			const response = await axios.post(BASE_URL + "/hotels/", data);
 			console.log("response", response.data);
 			setSubmitSuccess("Hotel Added!");
 		} catch (error) {

@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faUnlock } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "./../../context/AuthContext";
+import { BASE_URL } from "./../../constants/api";
 
 const schema = yup.object().shape({
 	identifier: yup.string().required("Please enter your username"),
@@ -30,7 +31,7 @@ function LoginForm() {
 		setLoginError(null);
 
 		try {
-			const response = await axios.post("http://localhost:1337/auth/local", data);
+			const response = await axios.post(BASE_URL + "/auth/local", data);
 			setAuth(response.data);
 			router.push("/adminPage");
 		} catch (error) {
@@ -46,7 +47,9 @@ function LoginForm() {
 			className="flex justify-center items-center flex-col w-4/5 font-heading"
 			onSubmit={handleSubmit(onSubmit)}
 			disabled={submitting}>
-			{loginError && <span className="text-center p-1 mb-5 w-full bg-red-400 border-red-600 border-2">{loginError}</span>}
+			{loginError && (
+				<span className="text-center p-1 mb-5 w-full bg-red-400 border-red-600 border-2">{loginError}</span>
+			)}
 			<fieldset className="flex justify-center items-center flex-col gap-5 md:gap-2 w-full" disabled={submitting}>
 				<div className="relative flex w-full flex-wrap items-stretch mb-3">
 					<input

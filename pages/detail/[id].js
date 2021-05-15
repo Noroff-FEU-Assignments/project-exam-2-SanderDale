@@ -5,7 +5,7 @@ import Breadcrumbs from "../../components/hotelDetails/Breadcrumbs";
 import HotelDetails from "../../components/hotelDetails/HotelDetails";
 
 export const getStaticPaths = async () => {
-	const response = await axios.get(BASE_URL);
+	const response = await axios.get(BASE_URL + "/hotels");
 	const hotels = response.data;
 
 	const paths = hotels.map((hotel) => {
@@ -22,7 +22,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
 	const id = context.params.id;
-	const response = await fetch(BASE_URL + id);
+	const response = await fetch(BASE_URL + "/hotels/" + id);
 	const data = await response.json();
 
 	return {

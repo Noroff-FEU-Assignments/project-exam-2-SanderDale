@@ -45,7 +45,7 @@ export async function getStaticProps() {
 	let hotels = [];
 
 	try {
-		const response = await axios.get(BASE_URL);
+		const response = await axios.get(BASE_URL + "/hotels");
 		hotels = response.data;
 	} catch (error) {
 		console.log(error);

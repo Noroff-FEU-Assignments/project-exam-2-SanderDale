@@ -9,14 +9,12 @@ function HotelDetails({ hotelName, hotelImage, hotelDescription, hotelRating, ho
 		setShowModal((prev) => !prev);
 	};
 
-	const baseUrl = "http://localhost:1337";
-
 	return (
 		<>
 			<EnquiryModal showModal={showModal} setShowModal={setShowModal} hotelName={hotelName} />
 			<div className="lg:hidden">
 				<Image
-					src={baseUrl + hotelImage}
+					src={hotelImage}
 					width={320}
 					height={110}
 					layout="responsive"
@@ -49,7 +47,7 @@ function HotelDetails({ hotelName, hotelImage, hotelDescription, hotelRating, ho
 				</div>
 				<div className="hidden lg:block mx-auto w-80 h-80 lg:row-start-1 lg:row-span-5  col-start-7 col-end-11">
 					<Image
-						src={baseUrl + hotelImage}
+						src={hotelImage}
 						width={350}
 						height={350}
 						layout="responsive"

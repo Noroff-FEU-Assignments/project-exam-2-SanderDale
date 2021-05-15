@@ -1,5 +1,5 @@
 import Head from "next/head";
-import ContactForm from "../components/contact/ContactFrom";
+import ContactForm from "../components/contact/ContactForm";
 import ContactInfo from "../components/contact/ContactInfo";
 import Image from "next/image";
 
@@ -11,7 +11,9 @@ export default function Contact() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<div className="flex justify-center items-center md:items-start flex-col md:w-4/5 xl:w-1/2">
-				<h1 className="uppercase my-5 md:mt-16 text-3xl md:text-6xl font-heading font-semibold tracking-wide">Contact Us</h1>
+				<h1 className="uppercase my-5 md:mt-16 text-3xl md:text-6xl font-heading font-semibold tracking-wide">
+					Contact Us
+				</h1>
 				<p className="w-4/5 font-paragraph mb-5 xl:mb-8 md:text-xl">
 					Feel free to contact us with any questions you might have about our hotels or your visit to Bergen!
 				</p>

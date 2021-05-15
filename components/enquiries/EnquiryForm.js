@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { BASE_URL } from "./../../constants/api";
 
 const schema = yup.object().shape({
 	name: yup.string().required("Please enter your name").min(5, "Please enter your full name"),
@@ -29,7 +30,7 @@ function EnquiryForm({ hotelName }) {
 		console.log(data);
 
 		try {
-			const response = await axios.post("http://localhost:1337/enquiries/", data);
+			const response = await axios.post(BASE_URL + "/enquiries/", data);
 			console.log("response", response.data);
 			setSubmitSuccess("Thank you for your booking!");
 		} catch (error) {
@@ -48,7 +49,9 @@ function EnquiryForm({ hotelName }) {
 			{submitSuccess ? (
 				""
 			) : (
-				<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-center items-center gap-3 font-paragraph">
+				<form
+					onSubmit={handleSubmit(onSubmit)}
+					className="flex flex-col justify-center items-center gap-3 font-paragraph">
 					{serverError && <span>{serverError}</span>}
 					<input className="hidden" name="hotel" defaultValue={hotelName} ref={register} />
 					<input
