@@ -1,21 +1,22 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../context/AuthContext";
 import useAxios from "../hooks/useAxios";
 import AdminEnquiries from "../components/admin/AdminEnquiries";
 import AdminMessages from "../components/admin/AdminMessages";
 import { BASE_URL } from "./../constants/api";
 
-export default function AdminPage({ enquiries, messages }) {
+export default function AdminPage() {
 	const router = useRouter();
 
 	const [auth, setAuth] = useContext(AuthContext);
+	const [enquiries, setEnquiries] = useState([]);
+	const [messages, setMessages] = useState([]);
 
 	if (auth === null) {
 		router.push("/");
@@ -26,7 +27,24 @@ export default function AdminPage({ enquiries, messages }) {
 		router.push("/");
 	}
 
-	console.log(messages);
+	const http = useAxios();
+
+	useEffect(function () {
+		async function getData() {
+			try {
+				const enquiriesResponse = await http.get("/enquiries");
+				console.log("response", enquiriesResponse);
+				setEnquiries(enquiriesResponse.data);
+				const messagesResponse = await http.get("/messages");
+				console.log("response", messagesResponse);
+				setMessages(messagesResponse.data);
+			} catch (error) {
+				console.log(error);
+			}
+		}
+
+		getData();
+	}, []);
 
 	return (
 		<div className="flex justify-center items-center flex-col">
@@ -61,25 +79,4 @@ export default function AdminPage({ enquiries, messages }) {
 			</div>
 		</div>
 	);
-}
-
-export async function getStaticProps() {
-	let enquiries = [];
-	let messages = [];
-
-	try {
-		const enquiriesResponse = await axios.get(BASE_URL + "/enquiries");
-		enquiries = enquiriesResponse.data;
-		const messagesResponse = await axios.get(BASE_URL + "/messages");
-		messages = messagesResponse.data;
-	} catch (error) {
-		console.log(error);
-	}
-
-	return {
-		props: {
-			enquiries: enquiries,
-			messages: messages,
-		},
-	};
 }
