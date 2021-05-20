@@ -29,20 +29,24 @@ function AddHotelForm() {
 
 	const http = useAxios();
 
+	const handleChange = (event) => {
+		console.log(event.target.files);
+		setFile(event.target.files[0]);
+	};
+
 	async function onSubmit(data) {
-		setSubmitting(true);
-		setServerError(null);
-		console.log(data);
+		const formData = new FormData();
+		formData.append(
+			"data",
+			JSON.stringify({ name: data.name, price: data.price, rating: data.rating, description: data.description })
+		);
+		formData.append("files.image", file);
 
 		try {
-			const response = await http.post("/hotels/", data);
-			console.log("response", response.data);
-			setSubmitSuccess("Hotel Added!");
+			const response = await http.post("/hotels/", formData);
+			console.log("data", response);
 		} catch (error) {
-			console.log("error", error);
-			setServerError(error.toString());
-		} finally {
-			setSubmitting(false);
+			console.log(error);
 		}
 	}
 
@@ -58,7 +62,7 @@ function AddHotelForm() {
 				{errors.rating && <span>{errors.rating.message}</span>}
 				<div className="flex flex-col">
 					<label>Image</label>
-					<input type="file" name="image" placeholder="Image" ref={register} />
+					<input onChange={handleChange} type="file" name="image" placeholder="Image" ref={register} />
 					{errors.image && <span>{errors.image.message}</span>}
 				</div>
 				<textarea type="text" name="description" placeholder="Description" ref={register} />
