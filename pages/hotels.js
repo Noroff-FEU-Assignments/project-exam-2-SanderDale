@@ -21,7 +21,7 @@ export default function Hotels({ hotels }) {
 						<Searchbar hotelNames={hotelNames} />
 					</div>
 				</div>
-				<div className="flex flex-col items-center xl:col-span-3 w-11/12 mb-10">
+				<div className="flex flex-col items-center col-span-1 xl:col-span-3 w-11/12 mb-10">
 					{hotels.map((hotel) => {
 						return (
 							<HotelsList
