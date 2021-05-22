@@ -7,8 +7,13 @@ import useAxios from "../../hooks/useAxios";
 
 const schema = yup.object().shape({
 	name: yup.string().required("Please enter hotel name").min(5, "Please enter the full hotel name"),
-	price: yup.string().required("Please enter hotel price"),
-	rating: yup.string().required("Please enter hotel rating"),
+	price: yup.number().required("Please enter hotel price").typeError("Price must be a number").positive().integer(),
+	rating: yup
+		.number()
+		.required("Please enter hotel rating")
+		.typeError("Rating must be a number")
+		.max(10, "Rating must be 10 or lower")
+		.positive(),
 	image: yup.string().required("Please upload a hotel image"),
 	description: yup
 		.string()
